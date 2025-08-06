@@ -10,13 +10,12 @@ struct Tensor {
 
     Tensor(unsigned int const shape_[N]) {
         unsigned int size = 1;
-        for (int i = 0; i < N; i++) {
+        // TODO: 填入正确的 shape 并计算 size
+        for (decltype(N) i = 0; i < N; i++) {
             size *= shape_[i];
             shape[i] = shape_[i];
         }
-        // TODO: 填入正确的 shape 并计算 size
-        data = new T[size];
-        std::memset(data, 0, size * sizeof(T));
+        data = new T[size]();
     }
     ~Tensor() {
         delete[] data;
