@@ -47,15 +47,8 @@ private:
 
     std::array<unsigned int, N> strides() const {
         std::array<unsigned int, N> strides;
-        for (int i = 0; i < N; i++) {
-            strides[i] = 1;
-        }
-
-        for (int i = N - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                strides[j] *= shape[i];
-            }
-        }
+        strides[N - 1] = 1;
+        for (int i = N - 2; i >= 0; i--) { strides[i] = strides[i + 1] * shape[i + 1]; }
         return strides;
     }
 };
